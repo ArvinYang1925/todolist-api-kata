@@ -121,6 +121,6 @@ const server = http.createServer((req, res) => {
 });
 
 const PORT = 3005;
-server.listen(PORT, () => {
+server.listen(process.env.PORT || PORT, () => {
   console.log(`Server running at http://localhost:${PORT}/`);
 });
