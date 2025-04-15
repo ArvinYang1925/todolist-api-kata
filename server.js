@@ -18,6 +18,7 @@ const server = http.createServer((req, res) => {
     body += chunk;
   });
 
+  // todo-list api
   if (req.url == "/todos" && req.method == "GET") {
     res.writeHead(200, headers);
     res.write(
@@ -86,13 +87,13 @@ const server = http.createServer((req, res) => {
         const id = req.url.split("/").pop();
         const index = todos.findIndex((element) => element.id == id);
 
-        if(title !== undefined && index != -1) {
+        if (title !== undefined && index != -1) {
           todos[index].title = title; // 更新單筆待辦事項
           res.writeHead(200, headers);
           res.write(
             JSON.stringify({
               status: "success",
-              data: todos
+              data: todos,
             })
           );
           res.end();
@@ -103,8 +104,6 @@ const server = http.createServer((req, res) => {
         errorHandle(res);
       }
     });
-
-    //
   } else if (req.method == "OPTIONS") {
     res.writeHead(200, headers);
     res.end();
